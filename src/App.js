@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { getRouterConfig } from './routes/router';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
+  const getRouters = () => {
+    return getRouterConfig().map((route, index) => {
+      const props = {
+        path: route.path,
+        exact: route.exact,
+        component: route.component,
+      };
+      return <Route key={index} {...props} />;
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Switch>{getRouters()}</Switch>
+      <Footer />
+    </BrowserRouter>
   );
 }
 

@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Dio Context
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project developed to show how to work with Context API
 
 ## Available Scripts
 
