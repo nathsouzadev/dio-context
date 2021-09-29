@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../context/globalState';
+
 import { 
     AppBar,
     Toolbar,
@@ -9,6 +12,12 @@ import {
 import CenterFocusWeakIcon from '@material-ui/icons/CenterFocusWeak';
 
 const Header = () => {
+    const { setState, state } = useContext(GlobalContext);
+
+    const handleClick = () => {
+        !state.login ? setState({login: true}) : setState({login: false})
+    }
+
     return(
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="relative">
@@ -17,9 +26,16 @@ const Header = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Dio Context API
                     </Typography>
-                    <Button variant="contained" color="error">
-                        Sair
-                    </Button>
+                    { 
+                        state.login && 
+                        <Button 
+                            variant="contained"
+                            color="error"
+                            onClick={handleClick}
+                        >
+                            Sair
+                        </Button>
+                    }
                 </Toolbar>
             </AppBar>
         </Box>

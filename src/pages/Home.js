@@ -1,3 +1,7 @@
+import { useContext } from 'react';
+import { useHistory } from "react-router-dom";
+import { GlobalContext } from '../context/globalState';
+
 import {
   Avatar,
   Button,
@@ -12,6 +16,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function Home() {
+  const history = useHistory();
+  const { setState } = useContext(GlobalContext);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -20,6 +27,9 @@ export default function Home() {
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    setState({login: true})
+    history.push('/user')
   };
 
   return (

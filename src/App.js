@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { getRouterConfig } from './routes/router';
+import { GlobalProvider } from './context/globalState';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -16,11 +17,13 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Header />
-      <Switch>{getRouters()}</Switch>
-      <Footer />
-    </BrowserRouter>
+    <GlobalProvider>
+      <BrowserRouter>
+        <Header />
+        <Switch>{getRouters()}</Switch>
+        <Footer />
+      </BrowserRouter>
+    </GlobalProvider>
   );
 }
 

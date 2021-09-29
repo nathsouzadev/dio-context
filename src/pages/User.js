@@ -1,3 +1,7 @@
+import { useContext } from 'react';
+import { useHistory } from "react-router-dom";
+import { GlobalContext } from '../context/globalState';
+
 import {
   Button,
   Stack,
@@ -10,6 +14,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function User() {
+  const history = useHistory();
+  const { state } = useContext(GlobalContext);
+  !state.login && history.push('/');
+
   return (
     <ThemeProvider theme={theme}>
       <Box
